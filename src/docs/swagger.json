@@ -1,0 +1,111 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Fetch records by filtering",
+      "version": "1.0.0",
+      "title": "Records",
+      "contact": {
+        "email": "abejidefemi1@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "Records",
+        "description": "Fetch records by filtering"
+      }
+    ],
+    "schemes": ["http", "https"],
+    "paths": {
+      "/records": {
+        "post": {
+          "tags": ["Records"],
+          "summary": "Returns a list of records based on filter",
+          "description": "",
+          "operationId": "records",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "record",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "example": "2016-01-01"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "example": "2017-01-01"
+                  },
+                  "minCount": {
+                    "type": "integer",
+                    "example": 1000
+                  },
+                  "maxCount": {
+                    "type": "integer",
+                    "example": 3000
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Success",
+              "schema": {
+                "title": "Success",
+                "example": {
+                  "code": 0,
+                  "msg": "success",
+                  "records": {}
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid inputs",
+              "schema": {
+                "example": {
+                  "application/json; charset=utf-8": {
+                    "code": 1,
+                    "msg": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+    }
+    },
+    "definitions": {
+      "Record": {
+        "type": "object",
+        "properties": {
+          "maxCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startDate": {
+            "type": "date",
+            "example": "2020-01-01"
+          },
+          "endDate": {
+            "type": "date",
+            "example": "2020-01-01"
+          }
+        },
+        "xml": {
+          "name": "Record"
+        }
+      }
+    }
+  }

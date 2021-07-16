@@ -1,38 +1,39 @@
-const { body } = require("express-validator");
+/* eslint-disable arrow-body-style */
+const { body } = require('express-validator');
 
 const recordValidationRules = () => {
   return [
-    body("minCount")
-    .trim()
+    body('minCount')
+      .trim()
       .not()
       .isEmpty()
-      .withMessage("minCount is required")
+      .withMessage('minCount is required')
       .isNumeric()
-      .withMessage("minCount must be a number"),
+      .withMessage('minCount must be a number'),
 
-    body("maxCount")
+    body('maxCount')
       .trim()
       .not()
       .isEmpty()
-      .withMessage("minCount is required")
-      .isNumeric()
-      .withMessage("minCount must be a number"),
+      .withMessage('minCount is required')
+      .isInt()
+      .withMessage('minCount must be a number'),
 
-    body("startDate")
+    body('startDate')
       .trim()
       .not()
       .isEmpty()
-      .withMessage("startDate is required")
+      .withMessage('startDate is required')
       .isDate()
-      .withMessage("startDate must be a date"),
+      .withMessage('startDate must be a date'),
 
-    body("endDate")
+    body('endDate')
       .trim()
       .not()
       .isEmpty()
-      .withMessage("endDate is required")
+      .withMessage('endDate is required')
       .isDate()
-      .withMessage("endDate must be a date"),
+      .withMessage('endDate must be a date'),
   ];
 };
 

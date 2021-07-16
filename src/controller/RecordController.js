@@ -12,7 +12,7 @@ const Record = require('../models/Record');
  *
  * @return {Object} Return success message with records
  */
-const createRecord = async (req, res) => {
+const filterRecord = async (req, res) => {
   let { startDate, endDate, minCount, maxCount } = req.body;
   minCount = Number(minCount);
   maxCount = Number(maxCount);
@@ -50,4 +50,4 @@ const createRecord = async (req, res) => {
   }
 };
 
-module.exports = createRecord;
+module.exports = filterRecord;

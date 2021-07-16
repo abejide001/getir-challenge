@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const RecordSchema = new mongoose.Schema({
   key: {
     type: String,
   },
   value: {
-     type: String
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -15,4 +15,4 @@ const RecordSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Record", RecordSchema);
+module.exports = mongoose.model('Record', RecordSchema);

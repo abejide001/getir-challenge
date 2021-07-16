@@ -1,10 +1,13 @@
-const { MongoMemoryServer }  = require("mongodb-memory-server");
-const mongoose = require("mongoose");
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable prefer-const */
+/* eslint-disable no-undef */
+const { MongoMemoryServer } = require('mongodb-memory-server');
+const mongoose = require('mongoose');
 
-let mongo
+let mongo;
 
 beforeAll(async () => {
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
   mongo = await MongoMemoryServer.create();
   const mongoUri = mongo.getUri();
 

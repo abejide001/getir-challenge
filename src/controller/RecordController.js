@@ -1,8 +1,9 @@
+/* eslint-disable prefer-const */
 const {
   sendFailureResponse,
   sendSuccessResponse,
-} = require("../utils/appResponse");
-const Record = require("../models/Record");
+} = require('../utils/appResponse');
+const Record = require('../models/Record');
 
 /**
  * @param {Object} req - HTTP request object
@@ -13,9 +14,9 @@ const Record = require("../models/Record");
  */
 const createRecord = async (req, res) => {
   let { startDate, endDate, minCount, maxCount } = req.body;
-  minCount = Number(minCount)
-  maxCount = Number(maxCount)
-  console.log(minCount)
+  minCount = Number(minCount);
+  maxCount = Number(maxCount);
+
   try {
     const records = await Record.aggregate([
       {
@@ -24,15 +25,15 @@ const createRecord = async (req, res) => {
         },
       },
       {
-        $unwind: "$counts",
+        $unwind: '$counts',
       },
       {
         $group: {
-          _id: "$_id",
-          key: { $first: "$key" },
-          createdAt: { $first: "$createdAt" },
+          _id: '$_id',
+          key: { $first: '$key' },
+          createdAt: { $first: '$createdAt' },
           totalCount: {
-            $sum: "$counts",
+            $sum: '$counts',
           },
         },
       },
@@ -43,7 +44,6 @@ const createRecord = async (req, res) => {
       },
       { $project: { _id: 0 } },
     ]).exec();
-    console.log(records)
     sendSuccessResponse(res, 200, records);
   } catch (error) {
     sendFailureResponse(res, 500, error.message);

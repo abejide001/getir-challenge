@@ -1,8 +1,8 @@
-
+/* eslint-disable arrow-body-style */
 const sendSuccessResponse = (res, code, records) => {
   return res.status(code).json({
     code: 0,
-    msg: "success",
+    msg: 'success',
     records,
   });
 };
@@ -16,5 +16,5 @@ const sendFailureResponse = (res, code, data) => {
 
 module.exports = {
   sendFailureResponse,
-  sendSuccessResponse
-}
+  sendSuccessResponse,
+};

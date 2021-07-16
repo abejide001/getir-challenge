@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+/* eslint-disable no-console */
+const mongoose = require('mongoose');
 
 module.exports = (async function dbConfig() {
   try {
@@ -8,7 +9,7 @@ module.exports = (async function dbConfig() {
       useCreateIndex: true,
       useFindAndModify: false,
     });
-    console.log("connected to database");
+    console.log('connected to database');
   } catch (err) {
     console.log(err);
   }

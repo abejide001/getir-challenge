@@ -14,8 +14,6 @@ const Record = require('../models/Record');
  */
 const filterRecord = async (req, res) => {
   let { startDate, endDate, minCount, maxCount } = req.body;
-  minCount = Number(minCount);
-  maxCount = Number(maxCount);
 
   try {
     const records = await Record.aggregate([

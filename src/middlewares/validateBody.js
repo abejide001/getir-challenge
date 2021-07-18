@@ -1,17 +1,29 @@
-const { validationResult } = require('express-validator');
+/* eslint-disable no-multi-assign */
+/* eslint-disable no-undef */
+/* eslint-disable arrow-body-style */
+/* eslint-disable array-callback-return */
 const { sendFailureResponse } = require('../utils/appResponse');
 
-const validateBody = (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    const extractedErrors = [];
-    errors
-      .array({ onlyFirstError: true })
-      .map((err) => extractedErrors.push({ [err.param]: err.msg }));
-    sendFailureResponse(res, 422, extractedErrors);
-    return;
-  }
-  next();
-};
+module.exports = validateBody = (schema) => {
+  return (req, res, next) => {
+    const options = {
+      abortEarly: false,
+      allowUnknown: true,
+      stripUnknown: true,
+    };
 
-module.exports = validateBody;
+    // validate request body against schema
+    const { error, value } = schema.validate(req.body, options);
+
+    if (error) {
+      const errorArray = [];
+      error.details.map((result) => {
+        errorArray.push({ [result.path]: result.message });
+      });
+      sendFailureResponse(res, 422, errorArray);
+    } else {
+      req.body = value;
+      next();
+    }
+  };
+};

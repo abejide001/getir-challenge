@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-const Joi = require('joi');
+const Joi = require('joi').extend(require('@joi/date'));
 
 // create schema object
 const filterRecordSchema = Joi.object({
@@ -14,15 +14,17 @@ const filterRecordSchema = Joi.object({
     'any.required': 'minCount field is required',
   }),
 
-  startDate: Joi.date().raw().required().iso().messages({
+  startDate: Joi.date().format('YYYY-MM-DD').utc().required().messages({
     'date.base': 'startDate must be a date',
     'date.empty': 'startDate field is required',
+    'date.format': 'startDate must be in YYYY-MM-DD format',
     'any.required': 'startDate field is required',
   }),
 
-  endDate: Joi.date().raw().required().messages({
+  endDate: Joi.date().format('YYYY-MM-DD').utc().required().messages({
     'date.base': 'endDate must be a date',
     'date.empty': 'endDate field is required',
+    'date.format': 'endDate must be in YYYY-MM-DD format',
     'any.required': 'endDate field is required',
   }),
 });

@@ -27,6 +27,7 @@ cd getir-challenge
 export
 mv .env.sample .env
 npm i
+npm run start:dev
 ```
 
 ## Running **Tests**

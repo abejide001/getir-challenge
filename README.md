@@ -21,8 +21,8 @@ To work with this project you need to have the following installed on your local
 ## Install and run locally
 
 ```bash
-git clone https://github.com/abejide001/getir-challenge.git
-cd getir-challenge
+git clone https://github.com/abejide001/records.git
+cd records
 
 export
 mv .env.sample .env
@@ -33,8 +33,8 @@ npm run start:dev
 ## Running **Tests**
 
 ```bash
-git clone https://github.com/abejide001/getir-challenge.git
-cd getir-challenge
+git clone https://github.com/abejide001/records.git
+cd records
 
 # rename .env.sample to .env, and set your environment variable
 
